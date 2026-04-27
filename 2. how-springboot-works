@@ -1,0 +1,120 @@
+# 🌱 Spring Boot – How It Works 
+
+## 🔹 Overview
+Spring Boot ဆိုတာက Java-based framework တစ်ခုဖြစ်ပြီး  
+Spring Framework အပေါ်မှာ တည်ဆောက်ထားတာဖြစ်ပါတယ်။  
+Java application တွေကို လွယ်ကူမြန်ဆန်စွာ develop လုပ်နိုင်အောင် simplify လုပ်ပေးပါတယ်။
+
+---
+
+## 🔹 How Spring Boot Works (Flow)
+
+![Spring Boot Flow](files/spring-boot-flow.png)
+
+---
+
+## 🔹 Step-by-Step Explanation
+
+### 1️⃣ Add Dependencies (pom.xml)
+- Developer က `spring-boot-starter` dependencies ထည့်တယ်  
+- ဥပမာ: `spring-boot-starter-web`  
+
+👉 ဒီ starter တစ်ခုထဲမှာ  
+- Spring MVC  
+- JSON (Jackson)  
+- Embedded Tomcat  
+တို့ပါပြီးသား
+
+---
+
+### 2️⃣ Application Start
+```java
+SpringApplication.run(App.class, args);
+```
+
+👉 Application start ဖြစ်တယ်  
+👉 Spring context create လုပ်တယ်  
+
+---
+
+### 3️⃣ Component Scan
+- Spring က classpath ကို scan လုပ်တယ်  
+- @Component, @Service, @Controller တွေရှာတယ်  
+- Bean တွေ create လုပ်တယ်  
+
+---
+
+### 4️⃣ Auto-Configuration
+- Dependency အပေါ်မူတည်ပြီး config auto setup လုပ်တယ်  
+
+ဥပမာ  
+- Web dependency → Web config enable  
+- Database dependency → DB config enable  
+
+👉 Developer က manual config မရေးတော့ဘူး  
+
+---
+
+### 5️⃣ Embedded Server Start
+- Apache Tomcat built-in ပါပြီးသား  
+- Default port = 8080  
+👉 Server automatically start  
+
+---
+
+### 6️⃣ Application Ready 🎉
+- Browser / Postman မှာ access လို့ရပြီ  
+- API call လုပ်လို့ရပြီ  
+
+---
+
+## 🔹 Production Ready Features
+
+### ✔ Health Check
+Endpoint:
+```
+/actuator/health
+```
+
+Response:
+```json
+{
+  "status": "UP"
+}
+```
+
+👉 App, DB, Server OK ဖြစ်မဖြစ် သိနိုင်တယ်  
+
+---
+
+### ✔ Metrics
+Endpoint:
+```
+/actuator/metrics
+```
+
+👉 Performance data:
+- Request count  
+- Response time  
+- Memory / CPU usage  
+
+---
+
+### ✔ Monitoring
+- Prometheus, Grafana နဲ့ integrate လုပ်နိုင်တယ်  
+👉 Real-time monitoring လုပ်နိုင်တယ်  
+
+---
+
+## 🎯 Final Summary
+
+👉 Flow:
+**Dependency → Scan → Auto-config → Server start → Application ready**
+
+👉 Spring Boot ရဲ့ main idea:
+- Auto configuration  
+- Starter dependencies  
+- Embedded server  
+
+👉 Result:
+**Fast + Easy + Production-ready Java applications 🚀**
