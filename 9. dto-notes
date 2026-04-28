@@ -1,0 +1,105 @@
+# 📦 DTO (Data Transfer Object)
+
+## 📌 What is DTO?
+DTO (Data Transfer Object) ဆိုတာ **Layer တစ်ခုကနေ Layer တစ်ခုဆီ Data ပို့ဖို့သုံးတဲ့ Object** ဖြစ်ပါတယ်။
+
+---
+
+## 🧠 Why use DTO?
+
+### ❌ Problem (Without DTO)
+```java
+User {
+  id;
+  email;
+  password;
+}
+```
+👉 API response မှာ `password` ပါသွားနိုင်တယ် ❗
+
+---
+
+### ✅ Solution (Using DTO)
+```java
+UserDTO {
+  id;
+  email;
+}
+```
+👉 Client ကိုလိုအပ်တဲ့ data ပဲ return ပြန်ပေးနိုင်တယ်
+
+---
+
+## 📊 Diagram (Data Flow)
+```
+Client
+  |
+  v
+Controller
+  |
+  v
+Service Layer
+  |
+  v
+Entity (Database Model)
+  |
+  | ❌ Do NOT return directly
+  v
+DTO (Filtered Data)
+  |
+  v
+Client Response
+```
+
+---
+
+## 🎯 Benefits of DTO
+- 🔒 Hide sensitive fields (e.g. password, token)
+- 🧱 Avoid exposing Entity (database structure)
+- 🧼 Clean API response
+- 🔄 Control data flow (custom request/response)
+
+---
+
+## 🛠️ Example (Spring Boot)
+
+### Entity
+```java
+@Entity
+public class User {
+    private Long id;
+    private String email;
+    private String password;
+}
+```
+
+### DTO
+```java
+public class UserDTO {
+    private Long id;
+    private String email;
+}
+```
+
+### Mapping
+```java
+public UserDTO toDTO(User user) {
+    UserDTO dto = new UserDTO();
+    dto.setId(user.getId());
+    dto.setEmail(user.getEmail());
+    return dto;
+}
+```
+
+---
+
+## 🚀 Best Practices
+- ✔️ Use separate DTOs for Request & Response  
+- ✔️ Never expose Entity directly in Controller  
+- ✔️ Do mapping in Service layer  
+- ✔️ Use tools like MapStruct / ModelMapper  
+
+---
+
+## 🧩 Summary
+👉 DTO = **Safe + Clean way to transfer data between layers**
